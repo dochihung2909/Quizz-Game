@@ -17,31 +17,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     flex-direction: column; 
     background-color: #000;
 }
 
 .question_wrapper {
+    flex: 1; 
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center;  
     width: 100vw;  
 }
 
 .question {
     text-align: center; 
-    margin: 32px 0;
-    flex: 0 0 1;
+    margin: 32px 0; 
     width: 100%; 
     font-size: 40px;
     background-color: #090909; 
     color: #fff;
-    padding: 80px 32px;
-    align-self: flex-start;
+    padding: 80px 32px; 
 }
 
 .answer_wrapper {
+    flex: 1; 
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -68,6 +68,7 @@
 
 .hide {
     display: none !important;
+    animation: fadeOut 2s linear;
 }
 
 .btn {
@@ -76,12 +77,14 @@
     border: 1px solid #000; 
     width: 100%;
     cursor: pointer; 
-    font-size: 40px; 
+    font-size: 28px;  
+    height: 100%;
 }
 
 .controls {
     display: flex; 
     width: 70%;  
+    flex: 1;
 }
 
 .right {
@@ -158,4 +161,76 @@
     background-color: #fff;
     font-size: 40px;
     border-radius: 12px;
+}
+
+.fade {
+    animation: fadeOut 1s linear;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 0.5;
+        transform: translateY(0); 
+    } to {
+        transform: translateY(-100%);
+        opacity: 0; 
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+    padding: 12px 24px;
+    height: 74px;
+}
+
+.question-total {  
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    padding: 12px;
+    font-size: 24px;
+    background-color: #333333;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.home {   
+    display: flex;
+}
+
+.home > a { 
+    background-color: #333333;
+    border-radius: 8px; 
+    display: flex;
+    width: 50px;
+    height: 50px; 
+    text-decoration: none;
+    font-size: 20px;  
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin-right: 8px;
+    transition: all 0.2s linear;
+}
+
+.home > a:hover {
+    background-color: #545454;
+}  
+
+.mute.playing .fa-volume-high {
+    display: block;
+}
+
+.mute.playing .fa-volume-xmark {
+    display: none;
+}
+
+.mute .fa-volume-high {
+    display: none;
+}
+.mute .fa-volume-xmark {
+    display: block;
 }

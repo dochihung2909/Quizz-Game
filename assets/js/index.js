@@ -5,9 +5,10 @@ const $$ = document.querySelectorAll.bind(document)
 
 const optionsWrapper = $('.options')
 const options = $$('.option')
-   
-
-
+const controls = $('.controls')
+const questionLeft = $('.question-total')
+const muteBtn = $('.mute')
+const navbar = $('.home')
 
 const questions = []
 
@@ -34,10 +35,12 @@ const audio = $('#audio')
 const app = {
     currentQuestion: 0,
     isSelected: false, 
+    isPlayed: false,
     showQuestion() {    
         let quest = questions[this.currentQuestion]
         let correctAns = quest.correct_answer
-        question.innerText = quest.question 
+        question.innerText = quest.question  
+        questionLeft.innerText = `${this.currentQuestion+1}/${questions.length}`
         for (let ans in quest.answers) {
             let ansText = quest.answers[ans]  
             if (ansText) {
@@ -79,41 +82,57 @@ const app = {
     },   
     start() { 
         options.forEach(option => {
-            option.addEventListener('click', (e) => {
-                optionsWrapper.classList.add('hide')
-                selectOption = e.target.innerText 
-                fetch(`https://quizapi.io/api/v1/questions?apiKey=a3a6zO32OM5fEK8w72XIpuIRmaizSKMfG2bx8bsj&tags=${selectOption}&limit=20`)
-                    .then((response) =>  { 
-                        return response.json()
-                    })
-                    .then((quizs) =>  {    
-                        console.log(quizs)
-                        quizs.map((quiz,index) => { 
-                            let correctAnswer =[]
-                            for (let correct in quiz.correct_answers) {
-                                if (quiz.correct_answers[correct] === "true") {
-                                    correctAnswer.push(correct.slice(0, 8))
-                                }
-                            }   
-                            questions.push({
-                                question: quiz.question,
-                                answers: quiz.answers,
-                                correct_answer: correctAnswer,
-                                explanation: quiz.explanation
-                            })
+            option.addEventListener('click', (e) => { 
+                controls.classList.add('fade')
+                setTimeout(function() {
+                    controls.classList.add('hide')  
+                    selectOption = e.target.innerText 
+                    fetch(`https://quizapi.io/api/v1/questions?apiKey=a3a6zO32OM5fEK8w72XIpuIRmaizSKMfG2bx8bsj&tags=${selectOption}&limit=20`)
+                        .then((response) =>  { 
+                            return response.json()
+                        })
+                        .then((quizs) =>  {    
+                            console.log(quizs)
+                            quizs.map((quiz,index) => { 
+                                let correctAnswer =[]
+                                for (let correct in quiz.correct_answers) {
+                                    if (quiz.correct_answers[correct] === "true") {
+                                        correctAnswer.push(correct.slice(0, 8))
+                                    }
+                                }   
+                                questions.push({
+                                    question: quiz.question,
+                                    answers: quiz.answers,
+                                    correct_answer: correctAnswer,
+                                    explanation: quiz.explanation
+                                })
+                            })     
+                        })
+                        .catch((error) => {
+                            console.log(error)
                         })     
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })     
-                console.log(questions)  
-                startBtn.classList.add('hide')
-                questionWrapper.classList.remove('hide')
-                audio.play()
-                audio.loop = true 
-                setTimeout(() => {
-                    app.showQuestion()
-                }, 1000) 
+                    console.log(questions)   
+                    questionWrapper.classList.remove('hide')
+                    
+                    muteBtn.addEventListener("click", () =>{
+                        if (this.isPlayed) {
+                            audio.pause() 
+                            this.isPlayed = false  
+                        } else {
+                            audio.play()
+                            this.isPlayed = true
+                        }
+                        muteBtn.classList.toggle('playing')
+                    })  
+                    this.isPlayed = true 
+                    audio.play()
+                    audio.loop = true 
+                    questionLeft.classList.remove('hide')
+                    navbar.classList.remove('hide')
+                    setTimeout(() => {
+                        app.showQuestion()
+                    }, 1000) 
+                },1000)
             })
         }); 
     }

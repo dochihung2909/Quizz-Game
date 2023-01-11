@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">  
-        <!-- <div class="correct_count">0</div> -->
+        <nav class="navbar">
+            <div class="home hide">
+                <a href="/"><i class="fa-solid fa-house"></i></a>
+                <a title="Click to mute the music" href="#" class="mute playing">
+                    <i class="fa-solid fa-volume-high"></i>
+                    <i class="fa-solid fa-volume-xmark"></i> 
+                </a>
+            </div> 
+            <div class="question-total hide"></div>
+        </nav>
         <div class="question_wrapper hide">
             <div class="question">Question</div>
             <div class="answer_wrapper"> 
