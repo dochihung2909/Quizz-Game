@@ -12,7 +12,7 @@
     <div class="container">  
         <nav class="navbar">
             <div class="home hide">
-                <a href="/"><i class="fa-solid fa-house"></i></a>
+                <a href=""><i class="fa-solid fa-house"></i></a>
                 <a title="Click to mute the music" href="#" class="mute playing">
                     <i class="fa-solid fa-volume-high"></i>
                     <i class="fa-solid fa-volume-xmark"></i> 
@@ -65,8 +65,18 @@
             </div>
             <button class="next-btn btn hide" id="next-btn">Next</button>
         </div>
+        <div id="result" class="hide">
+            <div class="score"> 
+                <div class="score-wrong"></div>
+                <div class="score-right"></div>
+            </div>
+            <div class="re-test">
+                <a href="" class="btn">Take a new test</a>
+            </div>
+        </div>
     </div>
-    <audio id="audio" > 
+
+    <audio id="audio"> 
         <source src="./assets/audio/quiz_bg2.mp3" type="audio/mpeg">
     </audio>
     <script src="./assets/js/index.js"></script>

@@ -37,7 +37,7 @@
     font-size: 40px;
     background-color: #090909; 
     color: #fff;
-    padding: 80px 32px; 
+    padding: 50px 32px; 
 }
 
 .answer_wrapper {
@@ -233,4 +233,59 @@
 }
 .mute .fa-volume-xmark {
     display: block;
+} 
+
+
+/* Result */
+
+#result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%; 
+    flex: 1;
+    text-align: center;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    width: 100%; 
+}
+
+.score > div {
+    padding: 12px 18px;
+    width: 120px;
+    text-align: center; 
+    font-weight: bold;
+    color: #fff;
+    font-size: 24px;
+    border-radius: 12px;
+    margin: 24px;
+}
+
+.score-wrong {
+    background-color: red;
+}
+
+.score-right {
+    background-color: rgb(41, 224, 41);
+}
+
+.re-test { 
+    margin: 0 auto;
+    margin-top: 50px;
+    text-decoration: none;
+    background-color: #fff;
+    width: 300px;
+    border-radius: 8px;
+}
+
+.re-test > a { 
+    display: flex;
+    color: #000; 
+    padding:  12px 18px;
+    font-weight: bold;
+    justify-content: center;
+    text-decoration: none; 
 }
